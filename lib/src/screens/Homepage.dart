@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/src/Constants.dart';
+import 'package:todo_app/src/screens/Result.dart';
 import 'package:todo_app/src/widgets/ReusableCard.dart';
 
 enum Gender { male, female }
@@ -26,13 +27,18 @@ class _HomepageState extends State<Homepage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          bottomNavigationBar: Container(
-            height: 60,
-            decoration: BoxDecoration(color: primaryColor),
-            child: const Center(
-              child: Text(
-                "Calculate",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          bottomNavigationBar: GestureDetector(
+            onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => Result(height: _height, weight: _weight)));
+            },
+            child: Container(
+              height: 60,
+              decoration: BoxDecoration(color: primaryColor),
+              child: const Center(
+                child: Text(
+                  "Calculate",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                ),
               ),
             ),
           ),

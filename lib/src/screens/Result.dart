@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../Constants.dart';
@@ -42,10 +44,10 @@ var _bmiStore = [
 ];
 
 class Result extends StatefulWidget {
-  const Result({Key? key,this.height,this.weight}) : super(key: key);
+  const Result({Key? key,required this.height,required this.weight}) : super(key: key);
 
-  final double? height;
-  final double?weight;
+  final double height;
+  final double weight;
 
 
   @override
@@ -53,13 +55,20 @@ class Result extends StatefulWidget {
 }
 
 class _ResultState extends State<Result> {
-
   double bmiResult = 0.0;
 
   _calculateBmi(){
     setState(() {
-      // bmiResult = widget!.weight / widget!.height;
+      bmiResult = widget.weight / widget.height / widget.height * 10000;
     });
+
+    for (var element in _bmiStore) {
+      double? min = element['min']??;
+      double? max = element['max']??;
+      // if(bmiResult > min! && bmiResult < max!){
+      //     print(element);
+      // }
+    }
   }
 
   @override
@@ -73,13 +82,18 @@ class _ResultState extends State<Result> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-          bottomNavigationBar: Container(
-            height: 60,
-            decoration: BoxDecoration(color: primaryColor),
-            child: const Center(
-              child: Text(
-                "Calculate",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+          bottomNavigationBar: GestureDetector(
+            onTap: (){
+              Navigator.pop(context);
+            },
+            child: Container(
+              height: 60,
+              decoration: BoxDecoration(color: primaryColor),
+              child: const Center(
+                child: Text(
+                  "Calculate Again",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                ),
               ),
             ),
           ),
