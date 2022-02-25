@@ -61,13 +61,12 @@ class _ResultState extends State<Result> {
     setState(() {
       bmiResult = widget.weight / widget.height / widget.height * 10000;
     });
-
     for (var element in _bmiStore) {
-      double? min = element['min']??;
-      double? max = element['max']??;
-      // if(bmiResult > min! && bmiResult < max!){
-      //     print(element);
-      // }
+      double min = double.parse(element['min'].toString());
+      double max = double.parse(element['max'].toString());
+      if(bmiResult > min && bmiResult < max){
+
+      }
     }
   }
 

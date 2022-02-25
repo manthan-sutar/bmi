@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/src/screens/Homepage.dart';
+import 'package:todo_app/Apps.dart';
+import 'package:todo_app/bmi/src/screens/BMI.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData.dark(),
-      home: Homepage(),
+      home: const Apps(),
     );
   }
 }
